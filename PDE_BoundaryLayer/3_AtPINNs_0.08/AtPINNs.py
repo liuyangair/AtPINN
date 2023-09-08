@@ -141,6 +141,7 @@ class PhysicsInformedNN():
         pred_u_up = self.net_u(self.t_up, self.x_up)
         lossBC = torch.mean(pred_u_lf**2) + torch.mean(pred_u_lp**2) + torch.mean(pred_u_up**2)
         lossmu = torch.abs(self.mu_ - self.eps)
+        lossmu = (self.mu_ - self.eps)**2
         loss = lossf + lossBC + lossmu
 
         self.loss_f.append(lossf.item())
