@@ -91,7 +91,7 @@ class PhysicsInformedNN():
 
         self.optimizer_LBFGS = torch.optim.LBFGS(
             self.dnn.parameters(),
-            lr=0.5,
+            lr=1,
             max_iter=20000,
             max_eval=20000,
             history_size=200,
@@ -252,7 +252,7 @@ if __name__ == "__main__":
 
     BC = np.concatenate((lp[:, 0:2], up[:, 0:2], lf[:, 0:2], ur[:, 0:2]), 0)
 
-    eps = 1*np.pi
+    eps = 1
     u_BC = np.sin(-6*eps*BC[:, 1:2]) * np.exp(-3*eps*BC[:, 0:1])
 
     plt.plot(BC[:, 0:1], u_BC)
