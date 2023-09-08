@@ -115,6 +115,7 @@ class PhysicsInformedNN():
         loss_bc = torch.mean((self.u_BC - u_bc_prediction) ** 2)
 
         loss_mu = torch.abs(self.mu_ - self.eps)
+        loss_mu = (self.mu_ - self.eps)**2
         loss = loss_f * loss_f.item()/0.001 + loss_bc + loss_mu
 
         self.loss_f_list.append(loss_f.item())
