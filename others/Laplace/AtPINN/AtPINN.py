@@ -133,7 +133,8 @@ class PhysicsInformedNN():
         self.u_BC = torch.sin(-eps1 * self.y_BC) * torch.exp(-eps2 * self.x_BC)
         loss_BC = torch.mean((self.u_BC - u_BC_pred) ** 2)
         loss_eps = torch.abs(self.eps_ - self.eps)
-        loss = loss_f + (loss_BC.item() / 0.001) * loss_BC + loss_eps * self.para
+        loss_eps = (self.eps_ - self.eps)**2
+        loss = loss_f + (loss_BC.item() / 0.00017) * loss_BC + loss_eps * self.para
 
         self.loss_f_list.append(loss_f.item())
         self.loss_BC_list.append(loss_BC.item())
